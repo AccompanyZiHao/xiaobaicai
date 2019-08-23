@@ -3,23 +3,23 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title> ajax 请求，返回值为 304 Not Modify 错误原因与解决办法 | 小白菜的博客</title>
+  <title>about | 小白菜的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="JavaScript,Web,Vue,读书">
   
-  <meta name="description" content="原因：因为 http 的请求缓存问题引起的，前后调用相同的两个请求，服务器比较懒，不想给你重新发送一个请求，所以就用了缓存从而产生304了解决方案：加一个时间戳1234axios.get(&amp;quot;postData.json?&amp;quot;)    .then(res =&amp;gt; &amp;#123;        // to do something    &amp;#125;);  那么我们加一个参数就行了，">
-<meta name="keywords" content="js">
-<meta property="og:type" content="article">
-<meta property="og:title" content=" ajax 请求，返回值为 304 Not Modify 错误原因与解决办法">
-<meta property="og:url" content="http://yoursite.com/xiaobaicai/2018/12/07/ajax-请求，返回值为-304-Not-Modify-错误原因与解决办法/index.html">
+  <meta name="description" content="。。。 emmm 还在思考中的小白菜 (#^.^#)">
+<meta name="keywords" content="JavaScript,Web,Vue">
+<meta property="og:type" content="website">
+<meta property="og:title" content="about">
+<meta property="og:url" content="http://yoursite.com/xiaobaicai/about/index.html">
 <meta property="og:site_name" content="小白菜的博客">
-<meta property="og:description" content="原因：因为 http 的请求缓存问题引起的，前后调用相同的两个请求，服务器比较懒，不想给你重新发送一个请求，所以就用了缓存从而产生304了解决方案：加一个时间戳1234axios.get(&amp;quot;postData.json?&amp;quot;)    .then(res =&amp;gt; &amp;#123;        // to do something    &amp;#125;);  那么我们加一个参数就行了，">
+<meta property="og:description" content="。。。 emmm 还在思考中的小白菜 (#^.^#)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-12T15:13:10.000Z">
+<meta property="og:updated_time" content="2019-08-23T08:28:32.321Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" ajax 请求，返回值为 304 Not Modify 错误原因与解决办法">
-<meta name="twitter:description" content="原因：因为 http 的请求缓存问题引起的，前后调用相同的两个请求，服务器比较懒，不想给你重新发送一个请求，所以就用了缓存从而产生304了解决方案：加一个时间戳1234axios.get(&amp;quot;postData.json?&amp;quot;)    .then(res =&amp;gt; &amp;#123;        // to do something    &amp;#125;);  那么我们加一个参数就行了，">
+<meta name="twitter:title" content="about">
+<meta name="twitter:description" content="。。。 emmm 还在思考中的小白菜 (#^.^#)">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -110,27 +110,20 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-ajax-请求，返回值为-304-Not-Modify-错误原因与解决办法" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-       ajax 请求，返回值为 304 Not Modify 错误原因与解决办法
+      about
     </h1>
     <div class="post-title-bar">
       <ul>
           
-              <li>
-                  <i class="fa fa-book"></i>
-                  
-                      <a href="/xiaobaicai/categories/js/">js</a>
-                  
-              </li>
-          
         <li>
-          <i class="fa fa-calendar"></i>  2018-12-07
+          <i class="fa fa-calendar"></i>  2019-08-23
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -143,19 +136,15 @@
           
       </header>
     
-    <div class="article-entry post-content" itemprop="articleBody">
+    <div class="article-entry " itemprop="articleBody">
       
             
-            <h3 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h3><pre><code>因为 http 的请求缓存问题引起的，前后调用相同的两个请求，服务器比较懒，不想给你重新发送一个请求，所以就用了缓存从而产生304了</code></pre><h3 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h3><pre><code>加一个时间戳</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">axios.get(&quot;postData.json?&quot;)</span><br><span class="line">    .then(res =&gt; &#123;</span><br><span class="line">        // to do something</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>那么我们加一个参数就行了，这个参数没有什么实际意义，但是可以帮助我们让每次发的请求都不一样</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let date = new Date();</span><br><span class="line">let timer = date.getTime().toString();</span><br><span class="line">axios.get(&quot;postData.json?timer=&quot; + timer)</span><br><span class="line">    .then(res =&gt; &#123;</span><br><span class="line">        //to do something</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
-
+            <p>。。。 emmm 还在思考中的小白菜 (#^.^#)</p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年12月12日 23:13</p>
-        <p>原始链接： <a class="post-url" href="/xiaobaicai/2018/12/07/ajax-请求，返回值为-304-Not-Modify-错误原因与解决办法/" title=" ajax 请求，返回值为 304 Not Modify 错误原因与解决办法">http://yoursite.com/xiaobaicai/2018/12/07/ajax-请求，返回值为-304-Not-Modify-错误原因与解决办法/</a></p>
+        <p>最后更新： 2019年08月23日 16:28</p>
+        <p>原始链接： <a class="post-url" href="/xiaobaicai/about/index.html" title="about">http://yoursite.com/xiaobaicai/about/index.html</a></p>
         <footer>
             <a href="http://yoursite.com/xiaobaicai">
                 <img src="/xiaobaicai/images/logo.png" alt="Zihao">
@@ -212,7 +201,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/xiaobaicai/2018/12/07/ajax-请求，返回值为-304-Not-Modify-错误原因与解决办法/&title=《 ajax 请求，返回值为 304 Not Modify 错误原因与解决办法》 — 小白菜的博客&pic=http://yoursite.com/xiaobaicaiimages/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/xiaobaicai/about/&title=《about》 — 小白菜的博客&pic=http://yoursite.com/xiaobaicaiimages/logo.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -222,22 +211,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/xiaobaicai/2018/12/07/ajax-请求，返回值为-304-Not-Modify-错误原因与解决办法/&title=《 ajax 请求，返回值为 304 Not Modify 错误原因与解决办法》 — 小白菜的博客&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/xiaobaicai/about/&title=《about》 — 小白菜的博客&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/xiaobaicai/2018/12/07/ajax-请求，返回值为-304-Not-Modify-错误原因与解决办法/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/xiaobaicai/about/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《 ajax 请求，返回值为 304 Not Modify 错误原因与解决办法》 — 小白菜的博客&url=http://yoursite.com/xiaobaicai/2018/12/07/ajax-请求，返回值为-304-Not-Modify-错误原因与解决办法/&via=http://yoursite.com/xiaobaicai" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《about》 — 小白菜的博客&url=http://yoursite.com/xiaobaicai/about/&via=http://yoursite.com/xiaobaicai" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/xiaobaicai/2018/12/07/ajax-请求，返回值为-304-Not-Modify-错误原因与解决办法/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/xiaobaicai/about/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -247,7 +236,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/xiaobaicai/2018/12/07/ajax-请求，返回值为-304-Not-Modify-错误原因与解决办法/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/xiaobaicai/about/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -256,13 +245,6 @@
         <ul class="article-footer-menu">
             
             
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/xiaobaicai/tags/js/" class="color3">js</a>
-      
-  </li>
-
         </ul>
         
     </footer>
@@ -270,32 +252,6 @@
 </article>
 
 
-    <aside class="post-toc-pos post-toc-top" id="post-toc">
-        <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#原因："><span class="post-toc-text">原因：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#解决方案："><span class="post-toc-text">解决方案：</span></a></li></ol>
-        </nav>
-    </aside>
-    
-
-<nav id="article-nav">
-  
-    <a href="/xiaobaicai/2018/12/07/消息弹框/" id="article-nav-newer" class="article-nav-link-wrap">
-
-      <span class="article-nav-title">
-        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        
-           消息弹框 
-        
-      </span>
-    </a>
-  
-  
-    <a href="/xiaobaicai/2018/12/05/js-去除空字符串、空格/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title"> js 去除空字符串、空格 </span>
-      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-    </a>
-  
-</nav>
 
 
 
