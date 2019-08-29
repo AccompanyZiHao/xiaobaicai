@@ -8,18 +8,18 @@
   
     <meta name="keywords" content="JavaScript,Web,Vue,读书">
   
-  <meta name="description" content="参考链接：https://dmitripavlutin.com/javascript-array-from-applications/">
+  <meta name="description" content="参考链接：https://dmitripavlutin.com/javascript-array-from-applications/  任何一种编程语言都具有超出基本用法的功能，它得益于成功的设计和试图去解决广泛问题。JavaScript 中有一个这样的函数: Array.from：允许在 JavaScript 集合(如: 数组、类数组对象、或者是字符串、map 、set 等可迭代对象) 上">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
 <meta property="og:title" content=" Array.from 的用法">
 <meta property="og:url" content="http://yoursite.com/xiaobaicai/2019/08/29/Array-from-的用法/index.html">
 <meta property="og:site_name" content="小白菜的博客">
-<meta property="og:description" content="参考链接：https://dmitripavlutin.com/javascript-array-from-applications/">
+<meta property="og:description" content="参考链接：https://dmitripavlutin.com/javascript-array-from-applications/  任何一种编程语言都具有超出基本用法的功能，它得益于成功的设计和试图去解决广泛问题。JavaScript 中有一个这样的函数: Array.from：允许在 JavaScript 集合(如: 数组、类数组对象、或者是字符串、map 、set 等可迭代对象) 上">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-29T09:16:17.746Z">
+<meta property="og:updated_time" content="2019-08-29T11:01:55.211Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content=" Array.from 的用法">
-<meta name="twitter:description" content="参考链接：https://dmitripavlutin.com/javascript-array-from-applications/">
+<meta name="twitter:description" content="参考链接：https://dmitripavlutin.com/javascript-array-from-applications/  任何一种编程语言都具有超出基本用法的功能，它得益于成功的设计和试图去解决广泛问题。JavaScript 中有一个这样的函数: Array.from：允许在 JavaScript 集合(如: 数组、类数组对象、或者是字符串、map 、set 等可迭代对象) 上">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -149,10 +149,65 @@
             <blockquote>
 <p> 参考链接：<a href="https://dmitripavlutin.com/javascript-array-from-applications/" target="_blank" rel="noopener">https://dmitripavlutin.com/javascript-array-from-applications/</a></p>
 </blockquote>
+<p>任何一种编程语言都具有超出基本用法的功能，它得益于成功的设计和试图去解决广泛问题。<br>JavaScript 中有一个这样的函数: Array.from：允许在 JavaScript 集合(如: 数组、类数组对象、或者是字符串、map 、set 等可迭代对象) 上进行有用的转换。</p>
+<h3 id="一-介绍"><a href="#一-介绍" class="headerlink" title="一. 介绍"></a>一. 介绍</h3><p>在开始之前，我们先回想一下 Array.from() 的作用。语法:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Array.from(arrayLike[, mapFunction[, thisArg]])</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>arrayLike：必传参数，想要转换成数组的伪数组对象或可迭代对象。</li>
+<li>mapFunction：可选参数，mapFunction(item，index){…} 是在集合中的每个项目上调用的函数。返回的值将插入到新集合中。</li>
+<li>thisArg：可选参数，执行回调函数 mapFunction 时 this 对象。这个参数很少使用。</li>
+</ul>
+<p>例如，让我们将类数组的每一项乘以2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const someNumbers = &#123; &apos;0&apos;: 10, &apos;1&apos;: 15, length: 2 &#125;;</span><br><span class="line">Array.from(someNumbers, value =&gt; value * 2); // =&gt; [20, 30]</span><br></pre></td></tr></table></figure>
+
+<h3 id="二-将类数组转换成数组"><a href="#二-将类数组转换成数组" class="headerlink" title="二. 将类数组转换成数组"></a>二. 将类数组转换成数组</h3><p>Array.from() 第一个用途：将类数组对象转换成数组。</p>
+<p>通常，你会碰到的类数组对象有：函数中的 arguments 关键字，或者是一个 DOM 集合。</p>
+<p>在下面的示例中，让我们对函数的参数求和：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function sumArguments() &#123;</span><br><span class="line">    return Array.from(arguments).reduce((sum, num) =&gt; sum + num);</span><br><span class="line">&#125;</span><br><span class="line">sumArguments(1, 2, 3); // =&gt; 6</span><br></pre></td></tr></table></figure>
+
+<p>此外，Array.from() 的第一个参数可以是任意一个可迭代对象，我们继续看一些例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Array.from(&apos;Hey&apos;);                   // =&gt; [&apos;H&apos;, &apos;e&apos;, &apos;y&apos;]</span><br><span class="line">Array.from(new Set([&apos;one&apos;, &apos;two&apos;])); // =&gt; [&apos;one&apos;, &apos;two&apos;]</span><br><span class="line"></span><br><span class="line">const map = new Map();</span><br><span class="line">map.set(&apos;one&apos;, 1)</span><br><span class="line">map.set(&apos;two&apos;, 2);</span><br><span class="line">Array.from(map); // =&gt; [[&apos;one&apos;, 1], [&apos;two&apos;, 2]]</span><br></pre></td></tr></table></figure>
+
+<h3 id="三-克隆一个数组"><a href="#三-克隆一个数组" class="headerlink" title="三. 克隆一个数组"></a>三. 克隆一个数组</h3><p>在 JavaScript 中有很多克隆数组的方法。正如你所想，Array.from() 可以很容易的实现数组的浅拷贝。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const numbers = [3, 6, 9];</span><br><span class="line">const numbersCopy = Array.from(numbers);</span><br><span class="line"></span><br><span class="line">numbers === numbersCopy; // =&gt; false</span><br></pre></td></tr></table></figure>
+
+<p>Array.from(numbers) 创建了对 numbers 数组的浅拷贝，numbers === numbersCopy 的结果是 false，意味着虽然 numbers 和 numbersCopy 有着相同的项，但是它们是不同的数组对象。</p>
+<p>是否可以使用 Array.from() 创建数组的克隆，包括所有嵌套的？挑战一下！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function recursiveClone(val) &#123;</span><br><span class="line">    return Array.isArray(val) ? Array.from(val, recursiveClone) : val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const numbers = [[0, 1, 2], [&apos;one&apos;, &apos;two&apos;, &apos;three&apos;]];</span><br><span class="line">const numbersClone = recursiveClone(numbers);</span><br><span class="line"></span><br><span class="line">numbersClone; // =&gt; [[0, 1, 2], [&apos;one&apos;, &apos;two&apos;, &apos;three&apos;]]</span><br><span class="line">numbers[0] === numbersClone[0] // =&gt; false</span><br></pre></td></tr></table></figure>
+
+<p>recursiveClone() 能够对数组的深拷贝，通过判断 数组的 item 是否是一个数组，如果是数组，就继续调用 recursiveClone() 来实现了对数组的深拷贝。</p>
+<h3 id="四-使用值填充数组"><a href="#四-使用值填充数组" class="headerlink" title="四. 使用值填充数组"></a>四. 使用值填充数组</h3><p>如果你需要使用相同的值来初始化数组，那么 Array.from() 将是不错的选择。</p>
+<p>我们来定义一个函数，创建一个填充相同默认值的数组：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const length = 3;</span><br><span class="line">const init   = 0;</span><br><span class="line">const result = Array.from(&#123; length &#125;, () =&gt; init);</span><br><span class="line"></span><br><span class="line">result; // =&gt; [0, 0, 0]</span><br></pre></td></tr></table></figure>
+
+<p>result 是一个新的数组，它的长度为3，数组的每一项都是0。调用 Array.from() 方法，传入一个类数组对象 { length } 和 返回初始化值的 mapFunction 函数。</p>
+<p>但是，有一个替代方法 array.fill() 可以实现同样的功能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fillArray2(0, 3); // =&gt; [0, 0, 0]</span><br></pre></td></tr></table></figure>
+
+<p><strong>4.1 使用对象填充数组</strong></p>
+<p>当初始化数组的每个项都应该是一个新对象时，Array.from() 是一个更好的解决方案：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const length = 3;</span><br><span class="line">const resultA = Array.from(&#123; length &#125;, () =&gt; (&#123;&#125;));</span><br><span class="line">const resultB = Array(length).fill(&#123;&#125;);</span><br><span class="line"></span><br><span class="line">resultA; // =&gt; [&#123;&#125;, &#123;&#125;, &#123;&#125;]</span><br><span class="line">resultB; // =&gt; [&#123;&#125;, &#123;&#125;, &#123;&#125;]</span><br><span class="line"></span><br><span class="line">resultA[0] === resultA[1]; // =&gt; false</span><br><span class="line">resultB[0] === resultB[1]; // =&gt; true</span><br></pre></td></tr></table></figure>
+
+<p>由 Array.from 返回的 resultA 使用不同空对象实例进行初始化。之所以发生这种情况是因为每次调用时，mapFunction，即此处的 () =&gt; ({}) 都会返回一个新的对象。<br>然后，fill() 方法创建的 resultB 使用相同的空对象实例进行初始化。不会跳过空项。</p>
+<p><strong>4.2 使用 array.map 怎么样？</strong></p>
+<p>是不是可以使用 array.map() 方法来实现？我们来试一下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const length = 3;</span><br><span class="line">const init   = 0;</span><br><span class="line">const result = Array(length).map(() =&gt; init);</span><br><span class="line"></span><br><span class="line">result; // =&gt; [undefined, undefined, undefined]</span><br></pre></td></tr></table></figure>
+
+<p>map() 方法似乎不正常，创建出来的数组不是预期的 [0, 0, 0]，而是一个有3个空项的数组。<br>这是因为 Array(length) 创建了一个有3个空项的数组(也称为稀疏数组)，但是 map() 方法会跳过空项。</p>
+<h3 id="五-生成数字范围"><a href="#五-生成数字范围" class="headerlink" title="五. 生成数字范围"></a>五. 生成数字范围</h3><p>你可以使用 Array.from() 生成值范围。例如，下面的 range 函数生成一个数组，从0开始到 end - 1。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function range(end) &#123;</span><br><span class="line">    return Array.from(&#123; length: end &#125;, (_, index) =&gt; index);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">range(4); // =&gt; [0, 1, 2, 3]</span><br></pre></td></tr></table></figure>
+
+<p>在 range() 函数中，Array.from() 提供了类似数组的 {length：end} ，以及一个简单地返回当前索引的 map 函数 。这样你就可以生成值范围。</p>
+<h3 id="六-数组去重"><a href="#六-数组去重" class="headerlink" title="六. 数组去重"></a>六. 数组去重</h3><p>由于 Array.from() 的入参是可迭代对象，因而我们可以利用其与 Set 结合来实现快速从数组中删除重复项。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function unique(array) &#123;</span><br><span class="line">  return Array.from(new Set(array));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">unique([1, 1, 2, 3, 3]); // =&gt; [1, 2, 3]</span><br></pre></td></tr></table></figure>
+
+<p>首先，new Set(array) 创建了一个包含数组的集合，Set 集合会删除重复项。<br>因为 Set 集合是可迭代的，所以可以使用 Array.from() 将其转换为一个新的数组。<br>这样，我们就实现了数组去重。</p>
+<h3 id="七-结论"><a href="#七-结论" class="headerlink" title="七. 结论"></a>七. 结论</h3><p>Array.from() 方法接受类数组对象以及可迭代对象，它可以接受一个 map 函数，并且，这个 map 函数不会跳过值为 undefined 的数值项。这些特性给 Array.from() 提供了很多可能。<br>如上所述，你可以轻松的将类数组对象转换为数组，克隆一个数组，使用初始化填充数组，生成一个范围，实现数组去重。<br>实际上，Array.from() 是非常好的设计，灵活的配置，允许很多集合转换。</p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年08月29日 17:16</p>
+        <p>最后更新： 2019年08月29日 19:01</p>
         <p>本文链接： <a class="post-url" href="/xiaobaicai/2019/08/29/Array-from-的用法/" title=" Array.from 的用法">http://yoursite.com/xiaobaicai/2019/08/29/Array-from-的用法/</a></p>
         <footer>
             <a href="http://yoursite.com/xiaobaicai">
@@ -268,6 +323,12 @@
 </article>
 
 
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#一-介绍"><span class="post-toc-text">一. 介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#二-将类数组转换成数组"><span class="post-toc-text">二. 将类数组转换成数组</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三-克隆一个数组"><span class="post-toc-text">三. 克隆一个数组</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#四-使用值填充数组"><span class="post-toc-text">四. 使用值填充数组</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#五-生成数字范围"><span class="post-toc-text">五. 生成数字范围</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#六-数组去重"><span class="post-toc-text">六. 数组去重</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#七-结论"><span class="post-toc-text">七. 结论</span></a></li></ol>
+        </nav>
+    </aside>
+    
 
 <nav id="article-nav">
   
