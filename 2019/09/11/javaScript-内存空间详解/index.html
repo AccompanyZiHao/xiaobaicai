@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>javaScript 内存空间详解 | 小白菜的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="JavaScript,Web,Vue,读书">
+  
+  <meta name="description" content="原文链接：https://github.com/yygmind/blog/issues/14  在学习内存空间之前先了解一下栈、堆、队列 栈： 栈的结构就是后进先出（LIFO） 堆数据结构：堆数据结构是一种树状结构。它的存取数据的方式与书架和书非常相似。我们只需要知道书的名字就可以直接取出书了，并不需要把上面的书取出来。JSON格式的数据中，我们存储的key-value可以是无序的，因为顺序的不">
+<meta name="keywords" content="js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javaScript 内存空间详解">
+<meta property="og:url" content="https://accompanyzihao.github.io/xiaobaicai/2019/09/11/javaScript-内存空间详解/index.html">
+<meta property="og:site_name" content="小白菜的博客">
+<meta property="og:description" content="原文链接：https://github.com/yygmind/blog/issues/14  在学习内存空间之前先了解一下栈、堆、队列 栈： 栈的结构就是后进先出（LIFO） 堆数据结构：堆数据结构是一种树状结构。它的存取数据的方式与书架和书非常相似。我们只需要知道书的名字就可以直接取出书了，并不需要把上面的书取出来。JSON格式的数据中，我们存储的key-value可以是无序的，因为顺序的不">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-11T06:51:25.338Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javaScript 内存空间详解">
+<meta name="twitter:description" content="原文链接：https://github.com/yygmind/blog/issues/14  在学习内存空间之前先了解一下栈、堆、队列 栈： 栈的结构就是后进先出（LIFO） 堆数据结构：堆数据结构是一种树状结构。它的存取数据的方式与书架和书非常相似。我们只需要知道书的名字就可以直接取出书了，并不需要把上面的书取出来。JSON格式的数据中，我们存储的key-value可以是无序的，因为顺序的不">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/xiaobaicai/css/style.css">
+  <script src="/xiaobaicai/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/xiaobaicai/" class="left">
+                    <span class="site-title">Zihao&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a href="/xiaobaicai/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a href="/xiaobaicai/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a href="/xiaobaicai/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/xiaobaicai/">
+                    <img src="/xiaobaicai/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        Zihao&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        web 前端
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="MinHow" target="_blank" href="//minhow.com">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/wongminho">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//weibo.com/WongMinHo">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//twitter.com/huangminhow">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-javaScript-内存空间详解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      javaScript 内存空间详解
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/xiaobaicai/categories/js/">js</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-09-11
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <blockquote>
+<p>原文链接：<a href="https://github.com/yygmind/blog/issues/14" target="_blank" rel="noopener">https://github.com/yygmind/blog/issues/14</a></p>
+</blockquote>
+<p>在学习内存空间之前先了解一下栈、堆、队列</p>
+<p><strong>栈：</strong> 栈的结构就是后进先出<strong>（LIFO）</strong></p>
+<p><strong>堆数据结构：</strong>堆数据结构是一种树状结构。它的存取数据的方式与书架和书非常相似。我们只需要知道书的名字就可以直接取出书了，并不需要把上面的书取出来。JSON格式的数据中，我们存储的key-value可以是无序的，因为顺序的不同并不影响我们的使用，我们只需要关心书的名字。</p>
+<p><strong>队列：</strong>是一种先进先出（FIFO）的数据结构，这是事件循环（Event Loop）的基础结构</p>
+<h3 id="变量的存放"><a href="#变量的存放" class="headerlink" title="变量的存放"></a>变量的存放</h3><p>首先我们应该知道内存中有栈和堆，那么变量应该存放在哪里呢，堆？栈？</p>
+<p> 1 基本类型 –&gt; 保存在栈内存中，因为这些类型在内存中分别占有固定大小的空间，通过按值来访问。基本类型一共有6种：Undefined、Null、Boolean、Number 、String和Symbol<br> 2 引用类型 –&gt; 保存在堆内存中，因为这种值的大小不固定，因此不能把它们保存到栈内存中，但内存地址大小的固定的，因此保存在堆内存中，在栈内存中存放的只是该对象的访问地址。当查询引用类型的变量时， 先从栈中读取内存地址， 然后再通过地址找到堆中的值。对于这种，我们把它叫做按引用访问。</p>
+<p>在计算机的数据结构中，栈比堆的运算速度快，Object是一个复杂的结构且可以扩展：数组可扩充，对象可添加属性，都可以增删改查。将他们放在堆中是为了不影响栈的效率。而是通过引用的方式查找到堆中的实际对象再进行操作。所以查找引用类型值的时候先去栈查找再去堆查找</p>
+<p>几个问题</p>
+<p>问题1：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = 20;</span><br><span class="line">var b = a;</span><br><span class="line">b = 30;</span><br><span class="line">console.log(a)</span><br></pre></td></tr></table></figure>
+
+<p>问题2：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123; name: &apos;前端开发&apos; &#125;</span><br><span class="line">var b = a;</span><br><span class="line">b.name = &apos;进阶&apos;;</span><br><span class="line">console.log(b.name)</span><br></pre></td></tr></table></figure>
+
+<p>问题3：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123; name: &apos;前端开发&apos; &#125;</span><br><span class="line">var b = a;</span><br><span class="line">a = null;</span><br><span class="line">console.log(b)</span><br></pre></td></tr></table></figure>
+
+<p>现在来解答一下，三个问题的答案分别是20、‘进阶’、{ name: ‘前端开发’ }</p>
+<p>1 对于问题1，a、b都是基本类型，它们的值是存储在栈中的，a、b分别有各自独立的栈空间，所以修改了b的值以后，a的值并不会发生变化。<br>2 对于问题2，a、b都是引用类型，栈内存中存放地址指向堆内存中的对象，引用类型的复制会为新的变量自动分配一个新的值保存在变量对象中，但只是引用类型的一个地址指针而已，实际指向的是同一个对象，所以修改b.name的值后，相应的a.name也就发生了改变。<br>3 对于问题3，首先要说明的是null是基本类型，a = null之后只是把a存储在栈内存中地址改变成了基本类型null，并不会影响堆内存中的对象，所以b的值不受影响。</p>
+<h3 id="内存空间管理"><a href="#内存空间管理" class="headerlink" title="内存空间管理"></a>内存空间管理</h3><p>JavaScript的内存生命周期是</p>
+<ul>
+<li>1、分配你所需要的内存</li>
+<li>2、使用分配到的内存（读、写）</li>
+<li>3、不需要时将其释放、归还</li>
+</ul>
+<p>JavaScript有自动垃圾收集机制，最常用的是通过标记清除的算法来找到哪些对象是不再继续使用的，使用a = null其实仅仅只是做了一个释放引用的操作，让 a 原本对应的值失去引用，脱离执行环境，这个值会在下一次垃圾收集器执行操作时被找到并释放。</p>
+<p>在局部作用域中，当函数执行完毕，局部变量也就没有存在的必要了，因此垃圾收集器很容易做出判断并回收。但是全局变量什么时候需要自动释放内存空间则很难判断，因此在开发中，需要尽量避免使用全局变量。</p>
+<p>思考：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123;n: 1&#125;;</span><br><span class="line">var b = a;</span><br><span class="line">a.x = a = &#123;n: 2&#125;;</span><br><span class="line"></span><br><span class="line">a.x 	// 这时 a.x 的值是多少</span><br><span class="line">b.x 	// 这时 b.x 的值是多少</span><br></pre></td></tr></table></figure>
+
+<p>这一行代码  a.x = a = {n: 2};<br>. 操作符的优先级比赋值高。<br>解构一下发生了什么：</p>
+<ol>
+<li>a.x = undefined</li>
+<li>a.x = { n: 2 } // 等同于 b.x = { n:2 }</li>
+<li>a = { n:2 } // a 的引用指向发生了变化<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a.x = undefined</span><br><span class="line">b.x = &#123;n:2&#125;</span><br><span class="line">a = &#123;n:2&#125;</span><br><span class="line">b = &#123;</span><br><span class="line">    n:1,</span><br><span class="line">    x:&#123;</span><br><span class="line">        n:2</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>如果还不理解的话可以看下面这条链接<a href="https://www.zhihu.com/question/41220520" target="_blank" rel="noopener">https://www.zhihu.com/question/41220520</a></p>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年09月11日 14:51</p>
+        <p>本文链接： <a class="post-url" href="/xiaobaicai/2019/09/11/javaScript-内存空间详解/" title="javaScript 内存空间详解">https://accompanyzihao.github.io/xiaobaicai/2019/09/11/javaScript-内存空间详解/</a></p>
+        <footer>
+            <a href="https://accompanyzihao.github.io/xiaobaicai">
+                <img src="/xiaobaicai/images/logo.png" alt="Zihao">
+                Zihao
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃青菜
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/xiaobaicai/images/wechat_code.png" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/xiaobaicai/images/wechat_code.png">
+                <img class="reward-select-item-wechat" src="/xiaobaicai/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/xiaobaicai/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/xiaobaicai/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://accompanyzihao.github.io/xiaobaicai/2019/09/11/javaScript-内存空间详解/&title=《javaScript 内存空间详解》 — 小白菜的博客&pic=https://accompanyzihao.github.io/xiaobaicaiimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://accompanyzihao.github.io/xiaobaicai/2019/09/11/javaScript-内存空间详解/&title=《javaScript 内存空间详解》 — 小白菜的博客&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://accompanyzihao.github.io/xiaobaicai/2019/09/11/javaScript-内存空间详解/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《javaScript 内存空间详解》 — 小白菜的博客&url=https://accompanyzihao.github.io/xiaobaicai/2019/09/11/javaScript-内存空间详解/&via=https://accompanyzihao.github.io/xiaobaicai" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://accompanyzihao.github.io/xiaobaicai/2019/09/11/javaScript-内存空间详解/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://accompanyzihao.github.io/xiaobaicai/2019/09/11/javaScript-内存空间详解/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/xiaobaicai/tags/js/" class="color3">js</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变量的存放"><span class="post-toc-text">变量的存放</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#内存空间管理"><span class="post-toc-text">内存空间管理</span></a></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/xiaobaicai/2019/09/03/面向对象编程-函数式编程/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">面向对象编程 &amp;&amp; 函数式编程</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style="display:none">
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style="display:none">
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 Zihao<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "https://accompanyzihao.github.io/xiaobaicai",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            <a class="category-link" href="/xiaobaicai/categories/hexo/">hexo</a><a class="category-link" href="/xiaobaicai/categories/js/">js</a><a class="category-link" href="/xiaobaicai/categories/markdown/">markdown</a><a class="category-link" href="/xiaobaicai/categories/vue/">vue</a><a class="category-link" href="/xiaobaicai/categories/小程序/">小程序</a>
+        </div>
+        <div id="sidebar-menu-box-tags">
+            <a href="/xiaobaicai/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/xiaobaicai/tags/js/" style="font-size: 20px;">js</a> <a href="/xiaobaicai/tags/vue/" style="font-size: 16.67px;">vue</a> <a href="/xiaobaicai/tags/小程序/" style="font-size: 10px;">小程序</a>
+        </div>
+    </div>
+    <a href="javascript:;" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a href="/xiaobaicai/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/xiaobaicai/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/xiaobaicai/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            <a href="/xiaobaicai/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/xiaobaicai/tags/js/" style="font-size: 20px;">js</a> <a href="/xiaobaicai/tags/vue/" style="font-size: 16.67px;">vue</a> <a href="/xiaobaicai/tags/小程序/" style="font-size: 10px;">小程序</a>
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/xiaobaicai/js/search.js"></script>
+<script src="/xiaobaicai/js/main.js"></script>
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/xiaobaicai/js/animate.js"></script>
+
+
+  <script src="/xiaobaicai/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
