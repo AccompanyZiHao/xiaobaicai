@@ -3,23 +3,23 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title> 消息弹框  | 小白菜的博客</title>
+  <title>js 工具函数 | 小白菜的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="JavaScript,Web,Vue,读书">
   
-  <meta name="description" content="vue 中封装的 showTotast 和 heideLoading123456789101112131415161718192021222324252627282930313233343536.win &amp;#123;	width: 100%;	height: 100%;	position: fixed;	top: 0;	z-index: 99;	text-align: center;&amp;#125;.">
-<meta name="keywords" content="vue">
+  <meta name="description" content="判断日期是否是同一天12345isSameDay(timeA, timeB) &amp;#123;  let dateStart = new Date(timeA);  let dateEnd = new Date(timeB);  return (dateStart.setHours(0, 0, 0, 0) == dateEnd.setHours(0, 0, 0, 0));&amp;#125;">
+<meta name="keywords" content="JavaScript,Web,Vue">
 <meta property="og:type" content="article">
-<meta property="og:title" content=" 消息弹框 ">
-<meta property="og:url" content="https://accompanyzihao.github.io/xiaobaicai/2018/12/07/消息弹框/index.html">
+<meta property="og:title" content="js 工具函数">
+<meta property="og:url" content="https://accompanyzihao.github.io/xiaobaicai/2020/08/22/js-工具函数/index.html">
 <meta property="og:site_name" content="小白菜的博客">
-<meta property="og:description" content="vue 中封装的 showTotast 和 heideLoading123456789101112131415161718192021222324252627282930313233343536.win &amp;#123;	width: 100%;	height: 100%;	position: fixed;	top: 0;	z-index: 99;	text-align: center;&amp;#125;.">
+<meta property="og:description" content="判断日期是否是同一天12345isSameDay(timeA, timeB) &amp;#123;  let dateStart = new Date(timeA);  let dateEnd = new Date(timeB);  return (dateStart.setHours(0, 0, 0, 0) == dateEnd.setHours(0, 0, 0, 0));&amp;#125;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-12T15:08:38.000Z">
+<meta property="og:updated_time" content="2020-08-22T02:28:04.379Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content=" 消息弹框 ">
-<meta name="twitter:description" content="vue 中封装的 showTotast 和 heideLoading123456789101112131415161718192021222324252627282930313233343536.win &amp;#123;	width: 100%;	height: 100%;	position: fixed;	top: 0;	z-index: 99;	text-align: center;&amp;#125;.">
+<meta name="twitter:title" content="js 工具函数">
+<meta name="twitter:description" content="判断日期是否是同一天12345isSameDay(timeA, timeB) &amp;#123;  let dateStart = new Date(timeA);  let dateEnd = new Date(timeB);  return (dateStart.setHours(0, 0, 0, 0) == dateEnd.setHours(0, 0, 0, 0));&amp;#125;">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -110,27 +110,20 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-消息弹框" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-js-工具函数" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-       消息弹框 
+      js 工具函数
     </h1>
     <div class="post-title-bar">
       <ul>
           
-              <li>
-                  <i class="fa fa-book"></i>
-                  
-                      <a href="/xiaobaicai/categories/vue/">vue</a>
-                  
-              </li>
-          
         <li>
-          <i class="fa fa-calendar"></i>  2018-12-07
+          <i class="fa fa-calendar"></i>  2020-08-22
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -146,13 +139,13 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h3 id="vue-中封装的-showTotast-和-heideLoading"><a href="#vue-中封装的-showTotast-和-heideLoading" class="headerlink" title="vue 中封装的 showTotast 和 heideLoading"></a>vue 中封装的 showTotast 和 heideLoading</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">.win &#123;</span><br><span class="line">	width: 100%;</span><br><span class="line">	height: 100%;</span><br><span class="line">	position: fixed;</span><br><span class="line">	top: 0;</span><br><span class="line">	z-index: 99;</span><br><span class="line">	text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">.cue &#123;</span><br><span class="line">	background: rgba(0, 0, 0, 0.6);</span><br><span class="line">	color: #fff;</span><br><span class="line">	padding: 0.14rem;</span><br><span class="line">	margin: 65% auto;</span><br><span class="line">	border-radius: 0.08rem;</span><br><span class="line">	font-size: 0.14rem;</span><br><span class="line">	display: inline-table;</span><br><span class="line">	z-index: 99999;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;win&quot; v-if=&quot;msg != &apos;&apos;&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;cue&quot;&gt;&#123;&#123; msg &#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">// showtotast 当前的 this 指向，消息内容</span><br><span class="line">showTotast: function(_this, msg) &#123;</span><br><span class="line">    _this.msg = msg;</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">        _this.msg = &quot;&quot;;</span><br><span class="line">    &#125;, 2000);</span><br><span class="line">&#125;,</span><br><span class="line">// cancelLoading</span><br><span class="line">hideLoading: function(_this) &#123;</span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">        _this.msg = &quot;&quot;;</span><br><span class="line">    &#125;, 400);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+            <h3 id="判断日期是否是同一天"><a href="#判断日期是否是同一天" class="headerlink" title="判断日期是否是同一天"></a>判断日期是否是同一天</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">isSameDay(timeA, timeB) &#123;</span><br><span class="line">  let dateStart = new Date(timeA);</span><br><span class="line">  let dateEnd = new Date(timeB);</span><br><span class="line">  return (dateStart.setHours(0, 0, 0, 0) == dateEnd.setHours(0, 0, 0, 0));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年12月12日 23:08</p>
-        <p>本文链接： <a class="post-url" href="/xiaobaicai/2018/12/07/消息弹框/" title=" 消息弹框 ">https://accompanyzihao.github.io/xiaobaicai/2018/12/07/消息弹框/</a></p>
+        <p>最后更新： 2020年08月22日 10:28</p>
+        <p>本文链接： <a class="post-url" href="/xiaobaicai/2020/08/22/js-工具函数/" title="js 工具函数">https://accompanyzihao.github.io/xiaobaicai/2020/08/22/js-工具函数/</a></p>
         <footer>
             <a href="https://accompanyzihao.github.io/xiaobaicai">
                 <img src="/xiaobaicai/images/logo.png" alt="Zihao">
@@ -205,7 +198,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://accompanyzihao.github.io/xiaobaicai/2018/12/07/消息弹框/&title=《 消息弹框 》 — 小白菜的博客&pic=https://accompanyzihao.github.io/xiaobaicaiimages/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://accompanyzihao.github.io/xiaobaicai/2020/08/22/js-工具函数/&title=《js 工具函数》 — 小白菜的博客&pic=https://accompanyzihao.github.io/xiaobaicaiimages/logo.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -215,22 +208,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://accompanyzihao.github.io/xiaobaicai/2018/12/07/消息弹框/&title=《 消息弹框 》 — 小白菜的博客&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://accompanyzihao.github.io/xiaobaicai/2020/08/22/js-工具函数/&title=《js 工具函数》 — 小白菜的博客&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://accompanyzihao.github.io/xiaobaicai/2018/12/07/消息弹框/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://accompanyzihao.github.io/xiaobaicai/2020/08/22/js-工具函数/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《 消息弹框 》 — 小白菜的博客&url=https://accompanyzihao.github.io/xiaobaicai/2018/12/07/消息弹框/&via=https://accompanyzihao.github.io/xiaobaicai" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《js 工具函数》 — 小白菜的博客&url=https://accompanyzihao.github.io/xiaobaicai/2020/08/22/js-工具函数/&via=https://accompanyzihao.github.io/xiaobaicai" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://accompanyzihao.github.io/xiaobaicai/2018/12/07/消息弹框/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://accompanyzihao.github.io/xiaobaicai/2020/08/22/js-工具函数/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -240,7 +233,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://accompanyzihao.github.io/xiaobaicai/2018/12/07/消息弹框/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=https://accompanyzihao.github.io/xiaobaicai/2020/08/22/js-工具函数/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -249,13 +242,6 @@
         <ul class="article-footer-menu">
             
             
-  <li class="article-footer-tags">
-    <i class="fa fa-tags"></i>
-      
-    <a href="/xiaobaicai/tags/vue/" class="color4">vue</a>
-      
-  </li>
-
         </ul>
         
     </footer>
@@ -265,26 +251,16 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#vue-中封装的-showTotast-和-heideLoading"><span class="post-toc-text">vue 中封装的 showTotast 和 heideLoading</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#判断日期是否是同一天"><span class="post-toc-text">判断日期是否是同一天</span></a></li></ol>
         </nav>
     </aside>
     
 
 <nav id="article-nav">
   
-    <a href="/xiaobaicai/2018/12/11/javascript-中的浅拷贝和深拷贝/" id="article-nav-newer" class="article-nav-link-wrap">
-
-      <span class="article-nav-title">
-        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
-        
-           javascript 中的浅拷贝和深拷贝
-        
-      </span>
-    </a>
   
-  
-    <a href="/xiaobaicai/2018/12/07/ajax-请求，返回值为-304-Not-Modify-错误原因与解决办法/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title"> ajax 请求，返回值为 304 Not Modify 错误原因与解决办法</span>
+    <a href="/xiaobaicai/2020/08/21/几种快速生成有序整数数组方法参/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">几种快速生成有序整数数组方法参</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   
